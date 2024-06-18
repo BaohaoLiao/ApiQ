@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="./imgs/logo.webp" width="73" height="73">
+    <img src="./imgs/logo.webp" width="114" height="114">
     <p>ApiQ</p>
 </h1>
 <h3 align="center">
