@@ -3,7 +3,7 @@
     <p>ApiQ</p>
 </h1>
 <h3 align="center">
-    <p>Finetuning of Low-Bit Quantized Large Language Lodel</p>
+    <p>Finetuning of 2-Bit Quantized Large Language Model</p>
 </h3>
 <h5 align="center">
 
