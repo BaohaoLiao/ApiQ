@@ -27,6 +27,7 @@ ApiQ is a framework for quantizing and finetuning an LLM in low-bit format. It c
 - Fintuning of real/fake quantized LLM on WikiText-2, GSM8K, 4 arithmetic reasoning tasks and eight commonsense reasoning tasks
 
 ## News
+- [2024.06.19] Release of code
 
 ## Contents
 - [Install](#install)
