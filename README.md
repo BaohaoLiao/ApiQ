@@ -129,6 +129,22 @@ python ./apiq/main.py \
 ```
 
 ## Fnetuning
+1. WikiText-2
+```
+bash ./scripts/train_clm.sh
+```
+2. GSM8K
+```
+bash ./scripts/train_test_gsm8k.sh
+```
+3. Arithmetic / commonsense reasoning
+```
+# Download the training and test sets
+bash ./scripts/download_datasets.sh
+
+# Finetune
+bash ./scripts/train_multitask.sh
+```
 
 ## Aknowledgement
 - Our quantization code is based on [OmniQuant](https://github.com/OpenGVLab/OmniQuant)
