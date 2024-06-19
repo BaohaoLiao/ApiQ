@@ -108,7 +108,7 @@ python ./apiq/main.py \
     --resume $SAVE_DIR
 ```
 
-3. Convert the fake quantized LLM to a real quantized LLM in GPTQ format (only work for symmetric quantization):
+3. Convert the fake quantized LLM to a real quantized LLM in GPTQ format (**only work for symmetric quantization**):
 ```
 SIZE=7
 BIT=2
