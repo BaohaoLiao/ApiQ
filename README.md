@@ -45,7 +45,7 @@ pip install --upgrade pip
 pip install -e .
 ```
 
-If you want to finetune a real quantized LLM, we leverage the kernel from [AutoGPTQ](https://github.com/AutoGPTQ/AutoGPTQ#quick-installation). You should install AutoGPTQ and optimum as follows:
+If you want to finetune a real quantized LLM, we leverage the kernel from [AutoGPTQ](https://github.com/AutoGPTQ/AutoGPTQ#quick-installation). You can install AutoGPTQ and optimum as follows:
 ```
 git clone https://github.com/PanQiWei/AutoGPTQ.git && cd AutoGPTQ
 pip install gekko
@@ -54,6 +54,14 @@ pip install optimum>=0.20.0
 ```
 
 ## Model Zoo
+We provide fake/real and symmetrically/asymmetrically quantized models at Huggingface.
+- fake: The LLM's weights are still in FP16
+- real: The LLM's weights are in GPTQ format
+- symmetric: The quantization is symmetric, friendly to [vllm](https://github.com/vllm-project/vllm)
+- asymmetric: The quantization is asymmetric
+
+**Note**: For the finetuning of real quantized LLM, you need to use the real and symmetric version, because there is a bug in AutoGPTQ for the asymmetric quantizaion (see [discussion](https://github.com/OpenGVLab/OmniQuant/issues/57)). Fortunately, the difference between the symmetric and asymmetric quantization is very tiny.
+
 
 ## Quantization
 
