@@ -36,14 +36,31 @@ ApiQ is a framework for quantizing and finetuning an LLM in low-bit format. It c
 - [Citation](#citation)
 
 ## Install
+```
+conda create -n apiq python=3.10 -y
+conda activate apiq
+git clone https://github.com/BaohaoLiao/ApiQ.git
+cd ApiQ
+pip install --upgrade pip 
+pip install -e .
+```
+
+If you want to finetune a real quantized LLM, we leverage the kernel from [AutoGPTQ](https://github.com/AutoGPTQ/AutoGPTQ#quick-installation). You should install AutoGPTQ and optimum as follows:
+```
+git clone https://github.com/PanQiWei/AutoGPTQ.git && cd AutoGPTQ
+pip install gekko
+pip install -vvv --no-build-isolation -e .
+pip install optimum>=0.20.0
+```
 
 ## Model Zoo
 
 ## Quantization
 
+
 ## Fnetuning
 
-## Aknowledgements
+## Aknowledgement
 - Our quantization code is based on [OmniQuant](https://github.com/OpenGVLab/OmniQuant)
 - Our finetuning code is based on [LoftQ](https://github.com/yxli2123/LoftQ), [pyreft](https://github.com/stanfordnlp/pyreft) and [LLM-Adapters](https://github.com/AGI-Edgerunners/LLM-Adapters)
 
