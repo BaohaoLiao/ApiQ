@@ -7,7 +7,7 @@
 </h3>
 <h5 align="center">
 
-[![arXiv](https://img.shields.io/badge/ApiQ-2308.13137-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2402.05147)
+[![arXiv](https://img.shields.io/badge/arXiv-2308.13137-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2402.05147)
  <br>
 
 </h5>
