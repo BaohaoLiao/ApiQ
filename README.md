@@ -129,7 +129,7 @@ python ./apiq/main.py \
     --convert_to_gptq --real_quant
 ```
 
-## Fnetuning
+## Finetuning
 1. WikiText-2
 ```
 bash ./scripts/train_clm.sh
