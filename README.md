@@ -60,11 +60,73 @@ We provide fake/real and symmetrically/asymmetrically quantized models at Huggin
 - symmetric: The quantization is symmetric, friendly to [vllm](https://github.com/vllm-project/vllm)
 - asymmetric: The quantization is asymmetric
 
-**Note**: For the finetuning of real quantized LLM, you need to use the real and symmetric version, because there is a bug in AutoGPTQ for the asymmetric quantizaion (see [discussion](https://github.com/OpenGVLab/OmniQuant/issues/57)). Fortunately, the difference between the symmetric and asymmetric quantization is very tiny.
-
+**Note**: 
+- For the finetuning of real quantized LLM, you need to use the real and symmetric version, because there is a bug in AutoGPTQ for the asymmetric quantizaion (see [discussion](https://github.com/OpenGVLab/OmniQuant/issues/57)). 
+- Fortunately, the difference between the symmetric and asymmetric quantization is very tiny. All results in the paper are from the asymmetric quantization.
 
 ## Quantization
+1. Quantize an LLM with GPU as ./scripts/quantize.sh.
+```
+SIZE=7
+BIT=2
+GS=64
 
+SAVE_DIR=./model_zoos/Llama-2-${SIZE}b-hf-w${BIT}g${GS}-fake-sym
+mkdir -p $SAVE_DIR
+
+python ./apiq/main.py \
+    --model_name_or_path meta-llama/Llama-2-${SIZE}b-hf \
+    --lwc --wbits ${BIT} --group_size ${GS} \
+    --epochs 20 --seqlen 2048 --nsamples 128 \
+    --peft_lr 0.0005 --peft_wd 0.1 --lwc_lr 0.005 --lwc_wd 0.1 \
+    --symmetric \
+    --eval_ppl \
+    --aug_loss \
+    --save_dir $SAVE_DIR  
+```
+It will output some files in ```--save_dir```:
+- ```peft.pth```: contain the PEFT parameters 
+- ```lwc.pth```: contain the quantization parameters
+- folder ```apiq_init```: contain necessary files for finetuning a PEFT model
+- Other: The quantized version of LLM in FP16 format. tokenizer files, etc.
+
+2. Evaluate a quantized LLM with ```peft.pth``` and ```lwc.pth```. After quantization, you can evaluate the model again with ```--resume```.
+```
+SIZE=7
+BIT=2
+GS=64
+
+SAVE_DIR=./model_zoos/Llama-2-${SIZE}b-hf-w${BIT}g${GS}-fake-sym
+
+python ./apiq/main.py \
+    --model_name_or_path meta-llama/Llama-2-${SIZE}b-hf \
+    --lwc --wbits ${BIT} --group_size ${GS} \
+    --epochs 0 --seqlen 2048 --nsamples 128 \  # set epochs to 0
+    --symmetric \
+    --eval_ppl \
+    --save_dir $SAVE_DIR  \
+    --resume $SAVE_DIR
+```
+
+3. Convert the fake quantized LLM to a real quantized LLM in GPTQ format (only work for symmetric quantization):
+```
+SIZE=7
+BIT=2
+GS=64
+
+RESUME_DIR=SAVE_DIR=./model_zoos/Llama-2-${SIZE}b-hf-w${BIT}g${GS}-fake-sym
+SAVE_DIR=./model_zoos/Llama-2-${SIZE}b-hf-w${BIT}g${GS}-real-sym
+mkdir -p $SAVE_DIR
+
+python ./apiq/main.py \
+    --model_name_or_path meta-llama/Llama-2-${SIZE}b-hf \
+    --lwc --wbits ${BIT} --group_size ${GS} \
+    --epochs 0 --seqlen 2048 --nsamples 128 \  # set epochs to 0
+    --symmetric \
+    --eval_ppl \
+    --save_dir $SAVE_DIR  \
+    --resume $RESUME_DIR
+```
 
 ## Fnetuning
 
