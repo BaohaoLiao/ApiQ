@@ -125,7 +125,8 @@ python ./apiq/main.py \
     --symmetric \
     --eval_ppl \
     --save_dir $SAVE_DIR  \
-    --resume $RESUME_DIR
+    --resume $RESUME_DIR \
+    --convert_to_gptq --real_quant
 ```
 
 ## Fnetuning
