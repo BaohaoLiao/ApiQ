@@ -56,10 +56,10 @@ pip install optimum>=0.20.0
 
 ## Model Zoo
 We provide fake/real and symmetrically/asymmetrically quantized models at Huggingface.
-- fake: The LLM's weights are still in FP16
-- real: The LLM's weights are in GPTQ format
-- symmetric: The quantization is symmetric, friendly to [vllm](https://github.com/vllm-project/vllm)
-- asymmetric: The quantization is asymmetric
+- ```fake```: The LLM's weights are still in FP16
+- ```real```: The LLM's weights are in GPTQ format
+- ```symmetric```: The quantization is symmetric, friendly to [vllm](https://github.com/vllm-project/vllm)
+- ```asymmetric```: The quantization is asymmetric
 
 **Note**: 
 - For the finetuning of real quantized LLM, you need to use the real and symmetric version, because there is a bug in AutoGPTQ for the asymmetric quantizaion (see [discussion](https://github.com/OpenGVLab/OmniQuant/issues/57)). 
@@ -86,10 +86,10 @@ python ./apiq/main.py \
     --save_dir $SAVE_DIR  
 ```
 It will output some files in ```--save_dir```:
-- ```peft.pth```: contain the PEFT parameters 
-- ```lwc.pth```: contain the quantization parameters
+- ```peft.pth```: PEFT parameters 
+- ```lwc.pth```: quantization parameters
 - folder ```apiq_init```: contain necessary files for finetuning a PEFT model
-- Other: The quantized version of LLM in FP16 format. tokenizer files, etc.
+- Other: The quantized version of LLM in FP16 format, tokenizer files, etc
 
 2. Evaluate a quantized LLM with ```peft.pth``` and ```lwc.pth```. After quantization, you can evaluate the model again with ```--resume```.
 ```
