@@ -155,11 +155,12 @@ bash ./scripts/train_multitask.sh
 ## Citation
 If you find ApiQ or our code useful, please cite our paper:
 ```
-@article{ApiQ,
-  title={ApiQ: Finetuning of 2-Bit Quantized Large Language Model},
-  author={Baohao Liao and Christof Monz},
-  journal={arXiv preprint arXiv:2402.05147},
-  year={2024}
+@misc{ApiQ,
+      title={ApiQ: Finetuning of 2-Bit Quantized Large Language Model}, 
+      author={Baohao Liao and Christian Herold and Shahram Khadivi and Christof Monz},
+      year={2024},
+      eprint={2402.05147},
+      archivePrefix={arXiv}
 }
 ```
 
